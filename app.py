@@ -30,7 +30,6 @@ categorias = [
 
 @app.route("/")
 def inicio():
-    # Ahora pasamos las categorías a inicio.html en lugar de la lista de fotos plana
     return render_template("inicio.html", categorias=categorias)
 
 @app.route("/galeria/<categoria_slug>")
@@ -55,7 +54,6 @@ def ver_categoria(categoria_slug):
                 'portada': foto_miniatura
             })
             
-    # IMPORTANTE: pasamos 'trabajos_con_portada' en lugar de 'trabajos'
     return render_template("categoria.html", categoria=categoria_slug, trabajos=trabajos_con_portada)
 
 @app.route("/servicios")
@@ -65,6 +63,17 @@ def mostrar_servicios():
 @app.route("/contacto")
 def contacto():
     return render_template("contacto.html")
+
+@app.route("/galeria/<categoria>/<trabajo>")
+def ver_fotos_trabajo(categoria, trabajo):
+    ruta_fotos = os.path.join('static', 'imagenes', categoria, trabajo)
+    
+    if os.path.exists(ruta_fotos):
+        fotos = [f for f in os.listdir(ruta_fotos) if f.lower().endswith(('.webp', '.jpg', '.jpeg', '.png'))]
+    else:
+        fotos = []
+        
+    return render_template("trabajo_detalle.html", categoria=categoria, trabajo=trabajo, fotos=fotos)
 
 if __name__ == "__main__":
     app.run(debug=True)

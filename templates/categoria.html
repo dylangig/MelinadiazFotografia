@@ -34,7 +34,7 @@
 
     <div class="grid-trabajos">
         {% for trabajo in trabajos %}
-        <a href="#" class="tarjeta-trabajo">
+        <a href="{{ url_for('ver_fotos_trabajo', categoria=categoria, trabajo=trabajo.slug) }}" class="tarjeta-trabajo">
             <div class="img-container">
                 {% if trabajo.portada %}
                     <img src="{{ url_for('static', filename='imagenes/' + categoria + '/' + trabajo.slug + '/' + trabajo.portada) }}">
