@@ -35,17 +35,28 @@ def inicio():
 
 @app.route("/galeria/<categoria_slug>")
 def ver_categoria(categoria_slug):
-    # Ruta física a la carpeta: static/imagenes/infantil, etc.
     ruta_categoria = os.path.join('static', 'imagenes', categoria_slug)
-    
-    # Buscamos subcarpetas (ej: victoria, jose) dentro de la categoría
+    trabajos_con_portada = []
+
     if os.path.exists(ruta_categoria):
-        # Filtramos para obtener solo nombres de carpetas
-        trabajos = [f for f in os.listdir(ruta_categoria) if os.path.isdir(os.path.join(ruta_categoria, f))]
-    else:
-        trabajos = []
         
-    return render_template("categoria.html", categoria=categoria_slug, trabajos=trabajos)
+        subcarpetas = [f for f in os.listdir(ruta_categoria) if os.path.isdir(os.path.join(ruta_categoria, f))]
+        
+        for carpeta in subcarpetas:
+            ruta_trabajo = os.path.join(ruta_categoria, carpeta)
+           
+            fotos_trabajo = [f for f in os.listdir(ruta_trabajo) if f.lower().endswith(('.webp', '.jpg', '.jpeg', '.png'))]
+            
+            foto_miniatura = fotos_trabajo[0] if fotos_trabajo else None
+            
+            trabajos_con_portada.append({
+                'nombre': carpeta.replace('_', ' ').capitalize(),
+                'slug': carpeta,
+                'portada': foto_miniatura
+            })
+            
+    # IMPORTANTE: pasamos 'trabajos_con_portada' en lugar de 'trabajos'
+    return render_template("categoria.html", categoria=categoria_slug, trabajos=trabajos_con_portada)
 
 @app.route("/servicios")
 def mostrar_servicios():

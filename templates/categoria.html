@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ categoria.capitalize() }} - Melina Diaz Fotografía</title>
+    <style>
+        body { font-family: sans-serif; background-color: #fff0f5; text-align: center; }
+        .grid-trabajos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 40px;
+        }
+        .tarjeta-trabajo {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            text-decoration: none;
+            color: #333;
+        }
+        .tarjeta-trabajo:hover { transform: scale(1.05); }
+        .img-container { width: 100%; height: 200px; overflow: hidden; }
+        .img-container img { width: 100%; height: 100%; object-fit: cover; }
+        h2 { margin: 15px 0; font-size: 1.2rem; }
+        .volver { display: inline-block; margin-top: 20px; text-decoration: none; color: #d63384; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <h1>Trabajos de {{ categoria.replace('_', ' ').capitalize() }}</h1>
+    <a href="/" class="volver">← Volver al inicio</a>
+
+    <div class="grid-trabajos">
+        {% for trabajo in trabajos %}
+        <a href="#" class="tarjeta-trabajo">
+            <div class="img-container">
+                {% if trabajo.portada %}
+                    <img src="{{ url_for('static', filename='imagenes/' + categoria + '/' + trabajo.slug + '/' + trabajo.portada) }}">
+                {% else %}
+                    <div style="padding: 50px;">📁 Sin fotos</div>
+                {% endif %}
+            </div>
+            <h2>{{ trabajo.nombre }}</h2>
+        </a>
+        {% endfor %}
+    </div>
+
+</body>
+</html>
