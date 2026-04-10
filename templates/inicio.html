@@ -57,20 +57,25 @@
 </div>
 
 <!-- Galería -->
-<section class="galeria-seccion" data-aos="fade-up">
-    <h3>Nuestros trabajos</h3>
+<section class="galeria-seccion" id="trabajos" data-aos="fade-up">
+    <div class="galeria-header">
+        <h3>Nuestros trabajos</h3>
+        <p>Cada sesión cuenta una historia única</p>
+    </div>
     <div class="galeria">
         {% for cat in categorias %}
-    <div class="foto-card">
-        <a href="{{ url_for('ver_categoria', categoria_slug=cat.slug) }}">
-            <img src="{{ url_for('static', filename='imagenes/' + cat.portada) }}" style="width:100%; display:block;">
-            
-            <div class="info-overlay"> <h3>{{ cat.nombre }}</h3>
-                <p>2026</p>
-            </div>
-        </a>
+        <div class="foto-card">
+            <a href="{{ url_for('ver_categoria', categoria_slug=cat.slug) }}">
+                <img src="{{ url_for('static', filename='imagenes/' + cat.portada) }}">
+                <div class="info-overlay">
+                    <h3>{{ cat.nombre }}</h3>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
     </div>
-    {% endfor %}
+    <div style="text-align:center; margin-top: 40px;">
+        <a href="/galeria/infantil" class="btn">Ver toda la galería</a>
     </div>
 </section>
 
@@ -216,74 +221,80 @@
 
     /* Galería */
     .galeria-seccion {
-        text-align: center;
-        margin-top: 40px;
+    margin: 100px 0 120px;
     }
-    .galeria-seccion h3 {
-        font-size: 24px;
-        color: #e91e8c;
-        margin-bottom: 25px;
+    .galeria-header {
+        text-align: center;
+        margin-bottom: 50px;
+    }
+    .galeria-header h3 {
+        font-family: 'Playfair Display', serif;
+        font-size: 2.4rem;
+        color: #d81b60;
+        font-weight: 400;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        margin-bottom: 12px;
+    }
+    .galeria-header p {
+        color: #aaa;
+        font-size: 1rem;
+        letter-spacing: 2px;
+        text-transform: uppercase;
     }
     .galeria {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: 20px;
-        margin-top: 20px;
+        gap: 16px;
     }
     .foto-card {
+        position: relative;
         overflow: hidden;
-        border-radius: 20px;
-        box-shadow: 0 6px 16px rgba(0,0,0,0.1);
-        transition: transform 0.3s, box-shadow 0.3s;
+        border-radius: 12px;
+        aspect-ratio: 3 / 4;
+        cursor: pointer;
     }
-    
-    .foto-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 12px 24px rgba(0,0,0,0.15);
-    }
-
     .foto-card img {
         width: 100%;
-        height: 280px;
+        height: 100%;
         object-fit: cover;
         display: block;
-        transition: transform 0.3s;
+        transition: transform 0.6s ease;
     }
-    .foto-card img:hover {
-        transform: scale(1.05);
+    .foto-card:hover img {
+        transform: scale(1.06);
     }
-@media (max-width: 768px) {
-    .seccion-full,
-    .seccion-full.invertida {
-        flex-direction: column !important;
-        height: auto;
-        margin: 0 -20px 40px -20px;
-        }
-        .seccion-full-img img {
-            height: 300px;
-            width: 100%;
-        }
-        .seccion-full-texto {
-            padding: 30px 25px;
-        }
-        .seccion-full-texto h3 {
-            font-size: 22px;
-        }
-        .hero h2 {
-            font-size: 24px;
-        }
+    .info-overlay {
+        position: absolute;
+        bottom: 0; left: 0; right: 0;
+        background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 100%);
+        padding: 40px 24px 24px;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+    }
+    .foto-card:hover .info-overlay {
+        opacity: 1;
+    }
+    .info-overlay h3 {
+        color: white;
+        font-family: 'Playfair Display', serif;
+        font-size: 1.4rem;
+        font-weight: 400;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        margin: 0;
+    }
+    @media (max-width: 768px) {
         .galeria {
-            grid-template-columns: repeat(3, 1fr);
-            gap: 8px;
+            grid-template-columns: 1fr;
+            gap: 12px;
         }
-        .foto-card img {
-            height: 120px;
-        }
-}
+        .galeria-header h3 { font-size: 1.8rem; }
+    }
 
 </style>
 
-<section class="sobre-mi" id="sobre-mi" data-aos="fade-up">
+<section class="sobre-mi" id="sobre-mi" data-aos="fade-up" style="margin-top: 120px;">
     <div class="sobre-mi-img">
         <img src="{{ url_for('static', filename='imagenes/sobre-mi.webp') }}" alt="Melina Díaz Fotógrafa" />
     </div>
