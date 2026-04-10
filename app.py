@@ -5,18 +5,18 @@ app = Flask(__name__)
 
 servicios = [
     {
-        "nombre": "Bodas",
-        "descripcion": "Nuestro Stand de Glitter ofrece una experiencia completa de brillo y color...",
+        "nombre": "Stand de Glitter y Maquillaje Artístico",
+        "descripcion": "Nuestro Stand de Glitter ofrece una experiencia completa de brillo y color con glitter en polvo o gel, gemas, strass, piedras y polvo de hadas en variados colores, texturas y tamaños. Incluye pelos locos con pintura de brillo, maquillaje artístico para niños y adultos, y tatuajes personalizados. Todos nuestros productos son hipoalergénicos y el servicio viene equipado con banner, cartel y espejo hollywood.",
         "fotos": ["Glitter1.webp", "Glitter2.webp", "Glitter3.webp"]
     },
     {
-        "nombre": "XV",
-        "descripcion": "Incluye juegos de destreza, habilidad y competencia...",
+        "nombre": "Animación Infantil",
+        "descripcion": "Incluye juegos de destreza, habilidad y competencia acorde a la edad del grupo, maquillaje artístico para todos los nenes, también glitter y máquina de burbujas. Te ayudamos a organizar el momento de la torta y piñata, también a servirle a los nenes la comida y gaseosa. Incluye disfraz de panchero.",
         "fotos": ["Animacion1.webp", "Animacion2.webp"]
     },
     {
-        "nombre": "BOOK INFANTIL",
-        "descripcion": "Fotos ilimitadas, todas editadas en alta calidad...",
+        "nombre": "Fotografía Profesional",
+        "descripcion": "Fotos ilimitadas, todas editadas en alta calidad y entregadas en formato digital por Google Drive.",
         "fotos": ["fotografia1.webp", "fotografia2.webp"]
     }
 ]
@@ -33,9 +33,14 @@ TRABAJOS_DATA = {
             "slug": "jose", 
             "nombre": "Jose", 
             "año": "2026", 
-            "fotos": ["1.webp", "2.webp", "3.webp","4.webp","5.webp","6.webp","7.webp","8.webp","9.webp","10.webp", "11.webp","12.webp","13.webp","14.webp"]
+            "fotos": ["1.webp", "2.webp", "3.webp", "4.webp", "5.webp", "6.webp", "7.webp", "8.webp", "9.webp", "10.webp", "11.webp", "12.webp", "13.webp", "14.webp"]
         }, 
-        {"slug": "vicky", "nombre": "Vicky", "año": "2024", "fotos": ["vicky1.webp", "vicky2.webp"]}
+        {
+            "slug": "vicky", 
+            "nombre": "Vicky", 
+            "año": "2024", 
+            "fotos": ["vicky1.webp", "vicky2.webp"]
+        }
     ],
     "quince": [
         {"slug": "martina", "nombre": "Martina", "año": "2023", "fotos": ["1.webp", "2.webp"]}
@@ -44,11 +49,6 @@ TRABAJOS_DATA = {
 }
 @app.route('/static/imagenes/<path:filename>')
 def custom_static(filename):
-    return send_from_directory(os.path.join(app.root_path, 'static', 'imagenes'), filename)
-
-@app.route('/static/imagenes/<path:filename>')
-def custom_static(filename):
-    # Esto fuerza a Flask a entregar la imagen si Vercel la bloquea
     return send_from_directory(os.path.join(app.root_path, 'static', 'imagenes'), filename)
 
 @app.route("/")
@@ -71,8 +71,7 @@ def contacto():
 @app.route("/galeria/<categoria>/<trabajo>")
 def ver_fotos_trabajo(categoria, trabajo):
     lista_trabajos = TRABAJOS_DATA.get(categoria, [])
-    # Buscamos el diccionario del trabajo por su slug
-    trabajo_info = next((t for t in lista_trabajos if t["slug"] == trabajo), None)
+    trabajo_info = next((t for t in lista_trabajos if t["slug"].lower() == trabajo.lower()), None)
 
     if not trabajo_info:
         return "Trabajo no encontrado", 404
