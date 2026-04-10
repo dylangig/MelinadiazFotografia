@@ -65,8 +65,8 @@
            class="glightbox"
            data-gallery="galeria-sesion">
             <img src="/static/imagenes/{{ categoria }}/{{ trabajo.slug }}/{{ foto }}"
-                 alt="Foto {{ loop.index }}"
-                 loading="lazy">
+            alt="Foto {{ loop.index }} de la sesión de {{ trabajo.nombre }} — {{ categoria.replace('_', ' ').capitalize() }}"
+            loading="lazy">
         </a>
     </div>
     {% endfor %}

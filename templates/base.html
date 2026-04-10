@@ -1,9 +1,17 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZB4MP42XCE"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZB4MP42XCE');
+    </script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Melina Diaz Fotografia</title>
+    <title>{% block titulo %}Melina Diaz Fotografia{% endblock %}</title>
     <meta property="og:title" content="Melina Diaz Fotografia" />
     <meta property="og:description" content="Especialista en fotografía profesional en Buenos Aires." />
     <meta property="og:image" content="https://melinadiazfotografia-production.up.railway.app/static/imagenes/logo.webp" />
