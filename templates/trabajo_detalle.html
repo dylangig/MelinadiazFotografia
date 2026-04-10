@@ -13,13 +13,14 @@
     <div class="grilla-fotografica">
     {% for foto in fotos %}
     <div class="item-foto">
-        <a href="{{ url_for('static', filename='imagenes/' + categoria + '/' + trabajo.slug + '/' + foto) }}" 
-           class="glightbox" 
-           data-gallery="galeria-sesion"> 
-            <img src="{{ url_for('static', filename='imagenes/' + categoria + '/' + trabajo.slug + '/' + foto) }}" 
-                 alt="Foto {{ loop.index }}"
-                 loading="lazy">
-        </a>
+        <a href="/static/imagenes/{{ categoria }}/{{ trabajo.slug }}/{{ foto }}" 
+            class="glightbox" 
+            data-gallery="galeria-sesion">
+    
+        <img src="/static/imagenes/{{ categoria }}/{{ trabajo.slug }}/{{ foto }}" 
+            alt="Foto {{ loop.index }}" 
+            loading="lazy">
+    </a>
     </div>
     {% endfor %}
 </div>

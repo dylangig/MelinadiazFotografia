@@ -42,6 +42,9 @@ TRABAJOS_DATA = {
     ],
     "bodas": []
 }
+@app.route('/static/imagenes/<path:filename>')
+def custom_static(filename):
+    return send_from_directory(os.path.join(app.root_path, 'static', 'imagenes'), filename)
 
 @app.route('/static/imagenes/<path:filename>')
 def custom_static(filename):
