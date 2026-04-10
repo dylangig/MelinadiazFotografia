@@ -1,109 +1,74 @@
 {% extends "base.html" %}
 
 {% block contenido %}
-<div class="galeria-full-wrapper">
-    
-    <div class="encabezado-minimalista">
-        <h1 class="titulo-galeria">Sesión de {{ trabajo.nombre }}</h1>
-        <a href="{{ url_for('ver_categoria', categoria_slug=categoria) }}" class="link-volver">
-            &larr; Volver a {{ categoria.replace('_', ' ').capitalize() }}
-        </a>
-    </div>
-
-    <div class="grilla-fotografica">
-    {% for foto in fotos %}
-    <div class="item-foto">
-        <a href="/static/imagenes/{{ categoria }}/{{ trabajo.slug }}/{{ foto }}" 
-            class="glightbox" 
-            data-gallery="galeria-sesion">
-    
-        <img src="/static/imagenes/{{ categoria }}/{{ trabajo.slug }}/{{ foto }}" 
-            alt="Foto {{ loop.index }}" 
-            loading="lazy">
-    </a>
-    </div>
-    {% endfor %}
-</div>
-
-</div>
-
 <style>
-    .galeria-full-wrapper {
-        width: 100%;
-        max-width: 1400px;
-        margin: 0 auto;
-        padding: 20px;
-    }
-
     .encabezado-minimalista {
         text-align: center;
-        margin-bottom: 40px;
+        margin: 40px 0 30px;
     }
-
     .titulo-galeria {
-        font-family: 'Playfair Display', serif;
+        font-family: 'Playfair Display', "https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&family=Playfair+Display:wght@700&display=swap";
         color: #d81b60;
-        font-weight: 300;
+        font-weight: 400;
         text-transform: uppercase;
         letter-spacing: 3px;
         margin-bottom: 10px;
     }
-
     .link-volver {
-        color: #ff85a2;
+        color: #f48fb1;
         text-decoration: none;
-        font-size: 0.9rem;
+        font-size: 0.85rem;
         text-transform: uppercase;
+        letter-spacing: 1px;
     }
-
+    .link-volver:hover { color: #d81b60; }
     .grilla-fotografica {
         display: grid;
-        grid-template-columns: repeat(4, 1fr); 
-        gap: 15px; 
-    }
-
-    .item-foto {
-        position: relative;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
         width: 100%;
+    }
+    .item-foto {
         aspect-ratio: 1 / 1;
         overflow: hidden;
-        border-radius: 4px;
-        background-color: #f0f0f0;
+        border-radius: 6px;
+        background-color: #f0e6ec;
     }
-
     .item-foto img {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        transition: transform 0.4s ease, filter 0.4s ease;
+        transition: transform 0.4s ease;
         cursor: pointer;
+        display: block;
     }
-
-    .item-foto:hover img {
-        transform: scale(1.05);
-        filter: brightness(1.1);
-    }
-
-    @media (max-width: 1200px) {
-        .grilla-fotografica {
-            grid-template-columns: repeat(4, 1fr);
-        }
-    }
-
+    .item-foto:hover img { transform: scale(1.05); }
     @media (max-width: 992px) {
-        .grilla-fotografica {
-            grid-template-columns: repeat(3, 1fr);
-        }
+        .grilla-fotografica { grid-template-columns: repeat(3, 1fr); }
     }
-
     @media (max-width: 576px) {
-        .grilla-fotografica {
-            grid-template-columns: repeat(2, 1fr);
-            gap: 8px;
-        }
-        .titulo-galeria {
-            font-size: 1.5rem;
-        }
+        .grilla-fotografica { grid-template-columns: repeat(2, 1fr); gap: 6px; }
     }
 </style>
+
+<div class="encabezado-minimalista">
+    <h1 class="titulo-galeria">Sesión de {{ trabajo.nombre }}</h1>
+    <a href="{{ url_for('ver_categoria', categoria_slug=categoria) }}" class="link-volver">
+        &larr; Volver a {{ categoria.replace('_', ' ').capitalize() }}
+    </a>
+</div>
+
+<div class="grilla-fotografica">
+    {% for foto in fotos %}
+    <div class="item-foto">
+        <a href="/static/imagenes/{{ categoria }}/{{ trabajo.slug }}/{{ foto }}"
+           class="glightbox"
+           data-gallery="galeria-sesion">
+            <img src="/static/imagenes/{{ categoria }}/{{ trabajo.slug }}/{{ foto }}"
+                 alt="Foto {{ loop.index }}"
+                 loading="lazy">
+        </a>
+    </div>
+    {% endfor %}
+</div>
 {% endblock %}

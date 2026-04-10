@@ -1,97 +1,80 @@
 {% extends "base.html" %}
 
 {% block contenido %}
-<div class="container mt-5">
-    <h1 class="text-center mb-5 titulo-categoria">{{ categoria.replace('_', ' ').capitalize() }}</h1>
-    
-    <div class="row row-cols-1 row-cols-md-3 g-4">
-        {% for trabajo in trabajos %}
-        <div class="col">
-            <a href="{{ url_for('ver_fotos_trabajo', categoria=categoria, trabajo=trabajo.slug) }}" class="text-decoration-none">
-                <div class="tarjeta-horizontal">
-                    <img src="{{ url_for('static', filename='imagenes/' + categoria + '/' + trabajo.slug + '/' + (trabajo.fotos[0] if trabajo.fotos else 'default.jpg')) }}" 
-                         class="img-flat" alt="{{ trabajo.nombre }}">
-                    
-                    <div class="overlay-moderno">
-                        <div class="text-center">
-                            <h3 class="nombre-clienta">{{ trabajo.nombre|upper }}</h3>
-                            <span class="badge-año">{{ trabajo.año if trabajo.año else "2026" }}</span>
-                        </div>
-                    </div>
-                </div>
-            </a>
-        </div>
-        {% endfor %}
-    </div>
-</div>
-
 <style>
-    .titulo-categoria {
-        color: #d81b60;
+    .categoria-titulo {
         font-family: 'Playfair Display', "https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&family=Playfair+Display:wght@700&display=swap";
+        color: #d81b60;
+        text-align: center;
         letter-spacing: 3px;
-        margin-bottom: 40px;
+        text-transform: uppercase;
+        margin: 40px 0 30px;
     }
-
-    .tarjeta-horizontal {
+    .grilla-categoria {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        width: 100%;
+    }
+    .tarjeta-trabajo {
         position: relative;
-        border-radius: 12px;
+        aspect-ratio: 1 / 1;
         overflow: hidden;
-        aspect-ratio: 2.5 / 1; 
-        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        border-radius: 8px;
+        cursor: pointer;
     }
-
-    .tarjeta-horizontal:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 12px 25px rgba(216, 27, 96, 0.2);
-    }
-
-    .img-flat {
+    .tarjeta-trabajo img {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        transition: transform 0.6s ease;
+        transition: transform 0.5s ease;
     }
-
-    .tarjeta-horizontal:hover .img-flat {
-        transform: scale(1.08);
+    .tarjeta-trabajo:hover img {
+        transform: scale(1.06);
     }
-
-    .overlay-moderno {
+    .tarjeta-overlay {
         position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        bottom: 0; left: 0; right: 0;
+        background: linear-gradient(to top, rgba(0,0,0,0.75), transparent);
+        padding: 30px 20px 20px;
         opacity: 0;
         transition: opacity 0.3s ease;
     }
-
-    .tarjeta-horizontal:hover .overlay-moderno {
+    .tarjeta-trabajo:hover .tarjeta-overlay {
         opacity: 1;
     }
-
-    .nombre-clienta {
-        color: #ff85a2;
+    .tarjeta-nombre {
+        color: #fff;
+        font-family: 'Playfair Display', serif;
         font-size: 1.4rem;
-        font-weight: 700;
-        margin: 0;
         letter-spacing: 2px;
+        text-transform: uppercase;
+        margin: 0;
     }
-
-    .badge-anio {
-        color: white;
-        font-size: 0.8rem;
-        border: 1px solid white;
-        padding: 2px 10px;
-        border-radius: 20px;
-        margin-top: 8px;
-        display: inline-block;
+    .tarjeta-anio {
+        color: #f9a8c9;
+        font-size: 0.85rem;
+        margin-top: 4px;
+    }
+    @media (max-width: 576px) {
+        .grilla-categoria { grid-template-columns: 1fr; }
     }
 </style>
+
+<h1 class="categoria-titulo">{{ categoria.replace('_', ' ').capitalize() }}</h1>
+
+<div class="grilla-categoria">
+    {% for trabajo in trabajos %}
+    <a href="{{ url_for('ver_fotos_trabajo', categoria=categoria, trabajo=trabajo.slug) }}" style="text-decoration: none;">
+        <div class="tarjeta-trabajo">
+            <img src="{{ url_for('static', filename='imagenes/' + categoria + '/' + trabajo.slug + '/' + (trabajo.fotos[0] if trabajo.fotos else 'default.jpg')) }}"
+                 alt="{{ trabajo.nombre }}">
+            <div class="tarjeta-overlay">
+                <p class="tarjeta-nombre">{{ trabajo.nombre }}</p>
+                <p class="tarjeta-anio">{{ trabajo.año if trabajo.año else "2026" }}</p>
+            </div>
+        </div>
+    </a>
+    {% endfor %}
+</div>
 {% endblock %}
