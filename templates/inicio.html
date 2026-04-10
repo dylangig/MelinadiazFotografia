@@ -397,4 +397,254 @@
 }
 </style>
 
+<section class="testimonios-seccion" data-aos="fade-up">
+    <div class="testimonios-header">
+        <span class="galeria-eyebrow">Lo que dicen</span>
+        <h3>Testimonios</h3>
+    </div>
+
+    <div class="testimonios-track-wrapper">
+        <div class="testimonios-track" id="testimonios-track">
+
+            <div class="testimonio-card">
+                <div class="testimonio-estrellas">★★★★★</div>
+                <p class="testimonio-texto">"Melina captó cada momento del cumple de mi hija de una manera increíble. Las fotos quedaron hermosas, llenas de emoción y detalle. ¡Las vamos a atesorar para siempre!"</p>
+                <div class="testimonio-autora">
+                    <div class="testimonio-avatar">MG</div>
+                    <div>
+                        <p class="testimonio-nombre">María González</p>
+                        <p class="testimonio-tipo">Book Infantil</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonio-card">
+                <div class="testimonio-estrellas">★★★★★</div>
+                <p class="testimonio-texto">"Fue la mejor decisión contratar a Melina para mis 15. Súper profesional, me hizo sentir cómoda en todo momento y los resultados superaron todas mis expectativas."</p>
+                <div class="testimonio-autora">
+                    <div class="testimonio-avatar">SL</div>
+                    <div>
+                        <p class="testimonio-nombre">Sofía López</p>
+                        <p class="testimonio-tipo">15 Años</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonio-card">
+                <div class="testimonio-estrellas">★★★★★</div>
+                <p class="testimonio-texto">"Contratamos a Melina para nuestra boda y quedamos sin palabras. Cada foto cuenta una historia. La recomiendo con los ojos cerrados a quien quiera inmortalizar su día especial."</p>
+                <div class="testimonio-autora">
+                    <div class="testimonio-avatar">CR</div>
+                    <div>
+                        <p class="testimonio-nombre">Carolina Ramírez</p>
+                        <p class="testimonio-tipo">Boda</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonio-card">
+                <div class="testimonio-estrellas">★★★★★</div>
+                <p class="testimonio-texto">"Las fotos del book de mi nena son una obra de arte. Melina tiene una sensibilidad especial para capturar la personalidad de los chicos. ¡Gracias por tanto!"</p>
+                <div class="testimonio-autora">
+                    <div class="testimonio-avatar">LP</div>
+                    <div>
+                        <p class="testimonio-nombre">Laura Pereyra</p>
+                        <p class="testimonio-tipo">Book Infantil</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonio-card">
+                <div class="testimonio-estrellas">★★★★★</div>
+                <p class="testimonio-texto">"Muy profesional y atenta. Entregó las fotos en tiempo y forma, todas perfectamente editadas. Mi familia no para de elogiarlas. ¡Ya la estamos contratando para el año que viene!"</p>
+                <div class="testimonio-autora">
+                    <div class="testimonio-avatar">VF</div>
+                    <div>
+                        <p class="testimonio-nombre">Valeria Fernández</p>
+                        <p class="testimonio-tipo">15 Años</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="testimonios-dots" id="testimonios-dots"></div>
+</section>
+
+<style>
+
+
+.testimonios-seccion {
+    margin: 100px 0;
+    overflow: hidden;
+}
+.testimonios-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+.testimonios-header h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4rem;
+    color: #d81b60;
+    font-weight: 400;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+.testimonios-track-wrapper {
+    overflow: hidden;
+    width: 100%;
+}
+.testimonios-track {
+    display: flex;
+    gap: 24px;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: transform;
+}
+.testimonio-card {
+    min-width: calc(33.333% - 16px);
+    background: white;
+    border-radius: 16px;
+    padding: 32px;
+    border: 1px solid #f8bbd0;
+    box-shadow: 0 4px 20px rgba(216,27,96,0.06);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    flex-shrink: 0;
+}
+.testimonio-estrellas {
+    color: #f48fb1;
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+}
+.testimonio-texto {
+    color: #555;
+    font-size: 15px;
+    line-height: 1.8;
+    flex: 1;
+    font-style: italic;
+}
+.testimonio-autora {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 8px;
+}
+.testimonio-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #f48fb1, #d81b60);
+    color: white;
+    font-weight: 700;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+.testimonio-nombre {
+    font-weight: 700;
+    font-size: 14px;
+    color: #333;
+    margin: 0;
+}
+.testimonio-tipo {
+    font-size: 12px;
+    color: #f48fb1;
+    margin: 0;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+.testimonios-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 32px;
+}
+.testimonio-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #f8bbd0;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+    border: none;
+    padding: 0;
+}
+.testimonio-dot.active {
+    background: #d81b60;
+    transform: scale(1.3);
+}
+@media (max-width: 768px) {
+    .testimonio-card { min-width: calc(100% - 0px); }
+    .testimonios-header h3 { font-size: 1.8rem; }
+}
+</style>
+
+<script>
+(function() {
+    const track    = document.getElementById('testimonios-track');
+    const dotsEl   = document.getElementById('testimonios-dots');
+    const cards    = track.querySelectorAll('.testimonio-card');
+    const isMobile = () => window.innerWidth <= 768;
+    const perPage  = () => isMobile() ? 1 : 3;
+    const total    = cards.length;
+    let current    = 0;
+    let timer;
+
+    function buildDots() {
+        dotsEl.innerHTML = '';
+        const pages = Math.ceil(total / perPage());
+        for (let i = 0; i < pages; i++) {
+            const btn = document.createElement('button');
+            btn.className = 'testimonio-dot' + (i === 0 ? ' active' : '');
+            btn.setAttribute('aria-label', `Testimonio ${i + 1}`);
+            btn.addEventListener('click', () => goTo(i * perPage()));
+            dotsEl.appendChild(btn);
+        }
+    }
+
+    function updateDots() {
+        const dots = dotsEl.querySelectorAll('.testimonio-dot');
+        const activePage = Math.floor(current / perPage());
+        dots.forEach((d, i) => d.classList.toggle('active', i === activePage));
+    }
+
+    function goTo(index) {
+        const pp = perPage();
+        const maxIndex = total - pp;
+        current = Math.max(0, Math.min(index, maxIndex));
+        const cardWidth = cards[0].offsetWidth + 24;
+        track.style.transform = `translateX(-${current * cardWidth}px)`;
+        updateDots();
+        resetTimer();
+    }
+
+    function next() {
+        const pp = perPage();
+        const nextIndex = current + pp;
+        goTo(nextIndex >= total ? 0 : nextIndex);
+    }
+
+    function resetTimer() {
+        clearInterval(timer);
+        timer = setInterval(next, 4000);
+    }
+
+    buildDots();
+    resetTimer();
+    window.addEventListener('resize', () => { buildDots(); goTo(0); });
+
+    // Swipe en mobile
+    let startX = 0;
+    track.addEventListener('touchstart', e => startX = e.touches[0].clientX, { passive: true });
+    track.addEventListener('touchend', e => {
+        const diff = startX - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 50) diff > 0 ? next() : goTo(current - perPage());
+    });
+})();
+</script>
+
 {% endblock %}
