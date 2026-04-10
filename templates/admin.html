@@ -1,0 +1,130 @@
+{% extends "base.html" %}
+{% block contenido %}
+<style>
+    .admin-titulo { color: #d81b60; margin: 40px 0 30px; font-size: 2rem; }
+    .admin-card {
+        background: white; border-radius: 12px;
+        border: 1px solid #f8bbd0; padding: 30px; margin-bottom: 30px;
+    }
+    .admin-card h3 { color: #d81b60; margin-bottom: 20px; }
+    .admin-form-group { margin-bottom: 16px; }
+    .admin-form-group label { display: block; margin-bottom: 6px; font-weight: 600; color: #555; }
+    .admin-input {
+        width: 100%; padding: 10px 14px; border-radius: 8px;
+        border: 1px solid #f48fb1; font-size: 15px; font-family: inherit;
+    }
+    .admin-btn {
+        padding: 10px 28px; background: #d81b60; color: white;
+        border: none; border-radius: 25px; font-size: 15px;
+        cursor: pointer; font-weight: 600;
+    }
+    .admin-btn:hover { background: #ad1457; }
+    .admin-btn-danger {
+        padding: 6px 16px; background: #c62828; color: white;
+        border: none; border-radius: 20px; font-size: 13px; cursor: pointer;
+    }
+    .trabajos-lista { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; margin-top: 16px; }
+    .trabajo-item {
+        background: #fff5f9; border: 1px solid #f8bbd0;
+        border-radius: 10px; padding: 16px;
+    }
+    .trabajo-item h4 { color: #d81b60; margin-bottom: 6px; }
+    .trabajo-item p { font-size: 13px; color: #777; margin-bottom: 12px; }
+    .flash-msg {
+        background: #e8f5e9; border: 1px solid #a5d6a7;
+        color: #2e7d32; padding: 12px 20px; border-radius: 8px; margin-bottom: 24px;
+    }
+</style>
+
+<div style="display:flex; justify-content:space-between; align-items:center; margin-top:40px;">
+    <h2 class="admin-titulo" style="margin:0;">Panel de Administración</h2>
+    <a href="/admin/logout" style="color:#999; font-size:14px;">Cerrar sesión</a>
+</div>
+
+{% with msgs = get_flashed_messages() %}
+    {% if msgs %}
+        <div class="flash-msg">{{ msgs[0] }}</div>
+    {% endif %}
+{% endwith %}
+
+<!-- NUEVO TRABAJO -->
+<div class="admin-card">
+    <h3>Crear nuevo trabajo</h3>
+    <form method="POST" action="/admin/nuevo-trabajo" enctype="multipart/form-data">
+        <div class="admin-form-group">
+            <label>Categoría</label>
+            <select name="categoria" class="admin-input">
+                {% for cat in categorias %}
+                <option value="{{ cat.slug }}">{{ cat.nombre }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="admin-form-group">
+            <label>Nombre (ej: josefina)</label>
+            <input type="text" name="nombre" class="admin-input" placeholder="josefina" required>
+        </div>
+        <div class="admin-form-group">
+            <label>Fotos</label>
+            <input type="file" name="fotos" class="admin-input" multiple accept="image/*">
+        </div>
+        <button type="submit" class="admin-btn">Crear trabajo</button>
+    </form>
+</div>
+
+<!-- AGREGAR FOTOS-->
+<div class="admin-card">
+    <h3>Agregar fotos a un trabajo existente</h3>
+    <form method="POST" action="/admin/agregar-fotos" enctype="multipart/form-data">
+        <div class="admin-form-group">
+            <label>Categoría</label>
+            <select name="categoria" class="admin-input" id="sel-cat">
+                {% for cat in categorias %}
+                <option value="{{ cat.slug }}">{{ cat.nombre }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="admin-form-group">
+            <label>Trabajo</label>
+            <select name="trabajo" class="admin-input" id="sel-trabajo">
+                {% for cat in categorias %}
+                    {% for t in trabajos_data[cat.slug] %}
+                    <option value="{{ t.slug }}" data-cat="{{ cat.slug }}">{{ t.nombre }} ({{ cat.nombre }})</option>
+                    {% endfor %}
+                {% endfor %}
+            </select>
+        </div>
+        <div class="admin-form-group">
+            <label>Fotos a agregar</label>
+            <input type="file" name="fotos" class="admin-input" multiple accept="image/*">
+        </div>
+        <button type="submit" class="admin-btn">Agregar fotos</button>
+    </form>
+</div>
+
+<!-- TRABAJOS EXISTENTES -->
+<div class="admin-card">
+    <h3>Trabajos existentes</h3>
+    {% for cat in categorias %}
+        <h4 style="color:#f48fb1; margin: 16px 0 10px;">{{ cat.nombre }}</h4>
+        {% if trabajos_data[cat.slug] %}
+        <div class="trabajos-lista">
+            {% for t in trabajos_data[cat.slug] %}
+            <div class="trabajo-item">
+                <h4>{{ t.nombre }}</h4>
+                <p>{{ t.fotos|length }} fotos</p>
+                <form method="POST" action="/admin/eliminar-trabajo"
+                      onsubmit="return confirm('¿Eliminar {{ t.nombre }}?')">
+                    <input type="hidden" name="categoria" value="{{ cat.slug }}">
+                    <input type="hidden" name="trabajo" value="{{ t.slug }}">
+                    <button type="submit" class="admin-btn-danger">Eliminar</button>
+                </form>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <p style="color:#aaa; font-size:14px;">Sin trabajos aún.</p>
+        {% endif %}
+    {% endfor %}
+</div>
+
+{% endblock %}
