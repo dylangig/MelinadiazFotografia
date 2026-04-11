@@ -12,6 +12,24 @@
     </div>
 </section>
 
+<!-- CONTADOR DE STATS -->
+<section class="stats-section" data-aos="fade-up">
+    <div class="stats-container">
+        <div class="stat-item">
+            <div class="stat-number" data-target="50" data-suffix="+">+50</div>
+            <div class="stat-label">Sesiones realizadas</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number" data-target="5" data-suffix="+">5+</div>
+            <div class="stat-label">Años de experiencia</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number" data-target="100" data-suffix="%">100%</div>
+            <div class="stat-label">Clientes satisfechos</div>
+        </div>
+    </div>
+</section>
+
 <!-- FOTOGRAFÍA -->
 <div class="seccion-full" data-aos="fade-right" data-aos-duration="900">
     <div class="seccion-full-img">
@@ -26,10 +44,10 @@
     </div>
 </div>
 
-<!-- GALERÍA -->
+<!-- GALERIA CON SUBCARPETAS -->
 <section class="galeria-seccion" id="trabajos">
     <div class="galeria-header" data-aos="fade-up" data-aos-duration="700">
-        <span class="galeria-eyebrow">Portfollio</span>
+        <span class="galeria-eyebrow">Portfolio</span>
         <h3>Nuestros trabajos</h3>
         <p>Cada sesión cuenta una historia única</p>
     </div>
@@ -37,7 +55,7 @@
         {% for cat in categorias %}
         <div class="foto-card" data-aos="zoom-in" data-aos-delay="{{ loop.index0 * 120 }}" data-aos-duration="600">
             <a href="{{ url_for('ver_categoria', categoria_slug=cat.slug) }}">
-                <img src="{{ url_for('static', filename='imagenes/' + cat.portada) }}" loading="lazy">
+                <img src="{{ url_for('static', filename='imagenes/' + cat.portada) }}" class="glightbox" loading="lazy">
                 <div class="info-overlay">
                     <h3>{{ cat.nombre }}</h3>
                     <span class="ver-mas">Ver trabajos →</span>
@@ -75,7 +93,75 @@
     </div>
 </section>
 
-<!-- BOTÓN WSP FLOTANTE -->
+<!-- TESTIMONIOS -->
+<section class="testimonios-seccion" data-aos="fade-up">
+    <div class="testimonios-header">
+        <span class="galeria-eyebrow">Lo que dicen</span>
+        <h3>Testimonios</h3>
+    </div>
+    <div class="testimonios-track-wrapper">
+        <div class="testimonios-track" id="testimonios-track">
+            <div class="testimonio-card">
+                <div class="testimonio-estrellas">★★★★★</div>
+                <p class="testimonio-texto">"Melina captó cada momento del cumple de mi hija de una manera increíble. Las fotos quedaron hermosas, llenas de emoción y detalle. ¡Las vamos a atesorar para siempre!"</p>
+                <div class="testimonio-autora">
+                    <div class="testimonio-avatar">MG</div>
+                    <div>
+                        <p class="testimonio-nombre">María González</p>
+                        <p class="testimonio-tipo">Book Infantil</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonio-card">
+                <div class="testimonio-estrellas">★★★★★</div>
+                <p class="testimonio-texto">"Fue la mejor decisión contratar a Melina para mis 15. Súper profesional, me hizo sentir cómoda en todo momento y los resultados superaron todas mis expectativas."</p>
+                <div class="testimonio-autora">
+                    <div class="testimonio-avatar">SL</div>
+                    <div>
+                        <p class="testimonio-nombre">Sofía López</p>
+                        <p class="testimonio-tipo">15 Años</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonio-card">
+                <div class="testimonio-estrellas">★★★★★</div>
+                <p class="testimonio-texto">"Contratamos a Melina para nuestra boda y quedamos sin palabras. Cada foto cuenta una historia. La recomiendo con los ojos cerrados a quien quiera inmortalizar su día especial."</p>
+                <div class="testimonio-autora">
+                    <div class="testimonio-avatar">CR</div>
+                    <div>
+                        <p class="testimonio-nombre">Carolina Ramírez</p>
+                        <p class="testimonio-tipo">Boda</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonio-card">
+                <div class="testimonio-estrellas">★★★★★</div>
+                <p class="testimonio-texto">"Las fotos del book de mi nena son una obra de arte. Melina tiene una sensibilidad especial para capturar la personalidad de los chicos. ¡Gracias por tanto!"</p>
+                <div class="testimonio-autora">
+                    <div class="testimonio-avatar">LP</div>
+                    <div>
+                        <p class="testimonio-nombre">Laura Pereyra</p>
+                        <p class="testimonio-tipo">Book Infantil</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonio-card">
+                <div class="testimonio-estrellas">★★★★★</div>
+                <p class="testimonio-texto">"Muy profesional y atenta. Entregó las fotos en tiempo y forma, todas perfectamente editadas. Mi familia no para de elogiarlas. ¡Ya la estamos contratando para el año que viene!"</p>
+                <div class="testimonio-autora">
+                    <div class="testimonio-avatar">VF</div>
+                    <div>
+                        <p class="testimonio-nombre">Valeria Fernández</p>
+                        <p class="testimonio-tipo">15 Años</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="testimonios-dots" id="testimonios-dots"></div>
+</section>
+
+<!-- WSP FLOTANTE -->
 <a href="https://wa.me/5491125539044?text=Hola%20Melina!%20Me%20gustaría%20consultar%20sobre%20una%20sesión%20de%20fotos."
    class="wsp-flotante" target="_blank" title="Escribinos por WhatsApp">
     <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
@@ -83,6 +169,7 @@
     </svg>
 </a>
 
+<!-- ========== ESTILOS JUNTOS ========== -->
 <style>
 /* ── HERO ── */
 .hero {
@@ -94,7 +181,7 @@
     text-align: center;
     width: 100vw;
     margin-left: calc(-50vw + 50%);
-    background-image: url("{{ url_for('static', filename='imagenes/portada-bodas.webp') }}");
+    background-image: url("{{ url_for('static', filename='imagenes/portada-principal.webp') }}");
     background-size: cover;
     background-position: top center;
     overflow: hidden;
@@ -226,7 +313,7 @@
     transform: translateY(-2px);
 }
 
-/* ── GALERÍA ── */
+/* ── GALERIA CON SUBCARPETAS ── */
 .galeria-seccion { margin: 100px 0 120px; }
 .galeria-header { text-align: center; margin-bottom: 60px; }
 .galeria-eyebrow {
@@ -380,6 +467,167 @@
     100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
 }
 
+/* ── CONTADOR STATS ── */
+.stats-section {
+    background: linear-gradient(135deg, #fff0f5, #ffe4ec);
+    padding: 3rem 1rem;
+    margin: 40px 0;
+    border-radius: 40px;
+    text-align: center;
+}
+.stats-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 3rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+.stat-item {
+    flex: 1;
+    min-width: 160px;
+    padding: 1rem;
+}
+.stat-number {
+    font-size: 2.8rem;
+    font-weight: bold;
+    color: #d81b60;
+    font-family: 'Playfair Display', serif;
+    line-height: 1.2;
+}
+.stat-label {
+    font-size: 1rem;
+    color: #555;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-top: 0.5rem;
+}
+
+/* ── TESTIMONIOS ── */
+.testimonios-seccion {
+margin: 100px 0;
+overflow: hidden;
+}
+
+.testimonios-header {
+text-align: center;
+margin-bottom: 50px;
+}
+
+.testimonios-header h3 {
+font-family: 'Playfair Display', serif;
+font-size: 2.4rem;
+color: #d81b60;
+font-weight: 400;
+letter-spacing: 3px;
+text-transform: uppercase;
+}
+
+.testimonios-track-wrapper {
+overflow: hidden;
+width: 100%;
+position: relative;
+}
+
+.testimonios-track {
+display: flex;
+gap: 24px;
+transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+will-change: transform;
+}
+
+.testimonio-card {
+flex: 0 0 calc(50% - 12px);
+width: calc(50% - 12px);
+background: white;
+border-radius: 16px;
+padding: 32px;
+border: 1px solid #f8bbd0;
+box-shadow: 0 4px 20px rgba(216,27,96,0.06);
+display: flex;
+flex-direction: column;
+gap: 16px;
+}
+
+.testimonio-estrellas {
+color: #f48fb1;
+font-size: 1.1rem;
+letter-spacing: 2px;
+}
+
+.testimonio-texto {
+color: #555;
+font-size: 15px;
+line-height: 1.8;
+flex: 1;
+font-style: italic;
+}
+
+.testimonio-autora {
+display: flex;
+align-items: center;
+gap: 12px;
+margin-top: 8px;
+}
+
+.testimonio-avatar {
+width: 44px;
+height: 44px;
+border-radius: 50%;
+background: linear-gradient(135deg, #f48fb1, #d81b60);
+color: white;
+font-weight: 700;
+font-size: 13px;
+display: flex;
+align-items: center;
+justify-content: center;
+flex-shrink: 0;
+}
+
+.testimonio-nombre {
+font-weight: 700;
+font-size: 14px;
+color: #333;
+margin: 0;
+}
+
+.testimonio-tipo {
+font-size: 12px;
+color: #f48fb1;
+margin: 0;
+letter-spacing: 1px;
+text-transform: uppercase;
+}
+
+.testimonios-dots {
+display: flex;
+justify-content: center;
+gap: 8px;
+margin-top: 32px;
+}
+
+.testimonio-dot {
+width: 8px;
+height: 8px;
+border-radius: 50%;
+background: #f8bbd0;
+cursor: pointer;
+transition: background 0.3s, transform 0.3s;
+border: none;
+padding: 0;
+}
+
+.testimonio-dot.active {
+background: #d81b60;
+transform: scale(1.3);
+}
+
+@media (max-width: 768px) {
+.testimonio-card {
+flex: 0 0 100%;
+width: 100%;
+}
+}
 /* ── RESPONSIVE ── */
 @media (max-width: 768px) {
     .hero { margin: 0 -15px; background-attachment: scroll; min-height: 70vh; }
@@ -394,196 +642,16 @@
     .sobre-mi { flex-direction: column; gap: 30px; margin: 80px 0; }
     .sobre-mi-img { max-width: 100%; aspect-ratio: 4 / 3; }
     .wsp-flotante { bottom: 20px; right: 20px; }
-}
-</style>
-
-<section class="testimonios-seccion" data-aos="fade-up">
-    <div class="testimonios-header">
-        <span class="galeria-eyebrow">Lo que dicen</span>
-        <h3>Testimonios</h3>
-    </div>
-
-    <div class="testimonios-track-wrapper">
-        <div class="testimonios-track" id="testimonios-track">
-
-            <div class="testimonio-card">
-                <div class="testimonio-estrellas">★★★★★</div>
-                <p class="testimonio-texto">"Melina captó cada momento del cumple de mi hija de una manera increíble. Las fotos quedaron hermosas, llenas de emoción y detalle. ¡Las vamos a atesorar para siempre!"</p>
-                <div class="testimonio-autora">
-                    <div class="testimonio-avatar">MG</div>
-                    <div>
-                        <p class="testimonio-nombre">María González</p>
-                        <p class="testimonio-tipo">Book Infantil</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="testimonio-card">
-                <div class="testimonio-estrellas">★★★★★</div>
-                <p class="testimonio-texto">"Fue la mejor decisión contratar a Melina para mis 15. Súper profesional, me hizo sentir cómoda en todo momento y los resultados superaron todas mis expectativas."</p>
-                <div class="testimonio-autora">
-                    <div class="testimonio-avatar">SL</div>
-                    <div>
-                        <p class="testimonio-nombre">Sofía López</p>
-                        <p class="testimonio-tipo">15 Años</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="testimonio-card">
-                <div class="testimonio-estrellas">★★★★★</div>
-                <p class="testimonio-texto">"Contratamos a Melina para nuestra boda y quedamos sin palabras. Cada foto cuenta una historia. La recomiendo con los ojos cerrados a quien quiera inmortalizar su día especial."</p>
-                <div class="testimonio-autora">
-                    <div class="testimonio-avatar">CR</div>
-                    <div>
-                        <p class="testimonio-nombre">Carolina Ramírez</p>
-                        <p class="testimonio-tipo">Boda</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="testimonio-card">
-                <div class="testimonio-estrellas">★★★★★</div>
-                <p class="testimonio-texto">"Las fotos del book de mi nena son una obra de arte. Melina tiene una sensibilidad especial para capturar la personalidad de los chicos. ¡Gracias por tanto!"</p>
-                <div class="testimonio-autora">
-                    <div class="testimonio-avatar">LP</div>
-                    <div>
-                        <p class="testimonio-nombre">Laura Pereyra</p>
-                        <p class="testimonio-tipo">Book Infantil</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="testimonio-card">
-                <div class="testimonio-estrellas">★★★★★</div>
-                <p class="testimonio-texto">"Muy profesional y atenta. Entregó las fotos en tiempo y forma, todas perfectamente editadas. Mi familia no para de elogiarlas. ¡Ya la estamos contratando para el año que viene!"</p>
-                <div class="testimonio-autora">
-                    <div class="testimonio-avatar">VF</div>
-                    <div>
-                        <p class="testimonio-nombre">Valeria Fernández</p>
-                        <p class="testimonio-tipo">15 Años</p>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-    <div class="testimonios-dots" id="testimonios-dots"></div>
-</section>
-
-<style>
-
-
-.testimonios-seccion {
-    margin: 100px 0;
-    overflow: hidden;
-}
-.testimonios-header {
-    text-align: center;
-    margin-bottom: 50px;
-}
-.testimonios-header h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.4rem;
-    color: #d81b60;
-    font-weight: 400;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-}
-.testimonios-track-wrapper {
-    overflow: hidden;
-    width: 100%;
-}
-.testimonios-track {
-    display: flex;
-    gap: 24px;
-    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    will-change: transform;
-}
-.testimonio-card {
-    min-width: calc(33.333% - 16px);
-    background: white;
-    border-radius: 16px;
-    padding: 32px;
-    border: 1px solid #f8bbd0;
-    box-shadow: 0 4px 20px rgba(216,27,96,0.06);
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    flex-shrink: 0;
-}
-.testimonio-estrellas {
-    color: #f48fb1;
-    font-size: 1.1rem;
-    letter-spacing: 2px;
-}
-.testimonio-texto {
-    color: #555;
-    font-size: 15px;
-    line-height: 1.8;
-    flex: 1;
-    font-style: italic;
-}
-.testimonio-autora {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-top: 8px;
-}
-.testimonio-avatar {
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #f48fb1, #d81b60);
-    color: white;
-    font-weight: 700;
-    font-size: 13px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-}
-.testimonio-nombre {
-    font-weight: 700;
-    font-size: 14px;
-    color: #333;
-    margin: 0;
-}
-.testimonio-tipo {
-    font-size: 12px;
-    color: #f48fb1;
-    margin: 0;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-}
-.testimonios-dots {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    margin-top: 32px;
-}
-.testimonio-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: #f8bbd0;
-    cursor: pointer;
-    transition: background 0.3s, transform 0.3s;
-    border: none;
-    padding: 0;
-}
-.testimonio-dot.active {
-    background: #d81b60;
-    transform: scale(1.3);
-}
-@media (max-width: 768px) {
+    .stat-number { font-size: 2.2rem; }
+    .stats-container { gap: 1.5rem; }
     .testimonio-card { min-width: calc(100% - 0px); }
     .testimonios-header h3 { font-size: 1.8rem; }
 }
 </style>
 
+<!-- ========== SCRIPTS ========== -->
 <script>
+// Testimonios carrusel
 (function() {
     const track    = document.getElementById('testimonios-track');
     const dotsEl   = document.getElementById('testimonios-dots');
@@ -637,7 +705,6 @@
     resetTimer();
     window.addEventListener('resize', () => { buildDots(); goTo(0); });
 
-    // Swipe en mobile
     let startX = 0;
     track.addEventListener('touchstart', e => startX = e.touches[0].clientX, { passive: true });
     track.addEventListener('touchend', e => {
@@ -645,6 +712,46 @@
         if (Math.abs(diff) > 50) diff > 0 ? next() : goTo(current - perPage());
     });
 })();
+
+// Animación del contador
+document.addEventListener('DOMContentLoaded', function() {
+    const statNumbers = document.querySelectorAll('.stat-number');
+    let animated = false;
+
+    function animateNumbers() {
+        if (animated) return;
+        statNumbers.forEach(el => {
+            let target = parseInt(el.getAttribute('data-target'));
+            let suffix = el.getAttribute('data-suffix') || '';
+            if (isNaN(target)) return;
+            let current = 0;
+            let step = target / 40;
+            let update = () => {
+                current += step;
+                if (current < target) {
+                    let display = Math.ceil(current);
+                    el.innerText = display + suffix;
+                    requestAnimationFrame(update);
+                } else {
+                    el.innerText = target + suffix;
+                }
+            };
+            update();
+        });
+        animated = true;
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateNumbers();
+                observer.disconnect();
+            }
+        });
+    }, { threshold: 0.3 });
+    const statsSection = document.querySelector('.stats-section');
+    if (statsSection) observer.observe(statsSection);
+});
 </script>
 
 {% endblock %}

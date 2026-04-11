@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZB4MP42XCE"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -21,6 +20,7 @@
     <meta name="geo.region" content="AR-B" />
     <meta name="geo.placename" content="Zona Sur, Buenos Aires, Argentina" />
     <meta name="keywords" content="fotógrafa zona sur, book infantil zona sur, fotografía 15 años zona sur, fotógrafa Buenos Aires, book bebés zona sur" />
+    <link rel="preload" href="{{ url_for('static', filename='imagenes/portada-principal.webp') }}" as="image" type="image/webp">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
     <style>
@@ -38,7 +38,6 @@
         }
         h1, h2, h3 { font-family: 'Playfair Display', serif; }
 
-        /* HEADER */
         header {
             background: linear-gradient(135deg, #fce4ec, #f8bbd0);
             padding: 6px 20px 4px;
@@ -58,7 +57,6 @@
             max-height: 0;
         }
 
-        /* NAV */
         nav {
             background-color: #f48fb1;
             padding: 12px 30px;
@@ -99,7 +97,6 @@
         }
         nav a:hover { text-decoration: underline; }
 
-        /* DROPDOWN */
         .nav-dropdown { position: relative; display: inline-block; }
         .nav-dropdown-toggle { cursor: pointer; user-select: none; }
         .nav-dropdown-menu {
@@ -130,7 +127,6 @@
         .nav-dropdown-menu a:last-child { border-bottom: none; }
         .nav-dropdown-menu a:hover { background-color: #c2185b; text-decoration: none; }
 
-        /* HAMBURGUESA */
         .hamburguesa {
             display: none;
             flex-direction: column;
@@ -154,7 +150,6 @@
         .hamburguesa.open span:nth-child(2) { opacity: 0; }
         .hamburguesa.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-        /* CONTENIDO */
         .contenido {
             max-width: 1300px;
             margin: 0 auto;
@@ -175,7 +170,111 @@
         }
         .btn:hover { background-color: #e91e8c; }
 
-        /* FOOTER */
+        /* ── TESTIMONIOS ── */
+        .testimonios-seccion {
+            margin: 100px 0;
+            overflow: hidden;
+        }
+        .testimonios-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .testimonios-header h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.4rem;
+            color: #d81b60;
+            font-weight: 400;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+        .testimonios-track-wrapper {
+            overflow: hidden;
+            width: 100%;
+            position: relative;
+        }
+        .testimonios-track {
+            display: flex;
+            gap: 24px;
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            will-change: transform;
+        }
+        .testimonio-card {
+            flex: 0 0 calc(50% - 12px);
+            width: calc(50% - 12px);
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            border: 1px solid #f8bbd0;
+            box-shadow: 0 4px 20px rgba(216,27,96,0.06);
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .testimonio-estrellas {
+            color: #f48fb1;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+        }
+        .testimonio-texto {
+            color: #555;
+            font-size: 15px;
+            line-height: 1.8;
+            flex: 1;
+            font-style: italic;
+        }
+        .testimonio-autora {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 8px;
+        }
+        .testimonio-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #f48fb1, #d81b60);
+            color: white;
+            font-weight: 700;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .testimonio-nombre {
+            font-weight: 700;
+            font-size: 14px;
+            color: #333;
+            margin: 0;
+        }
+        .testimonio-tipo {
+            font-size: 12px;
+            color: #f48fb1;
+            margin: 0;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .testimonios-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 32px;
+        }
+        .testimonio-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #f8bbd0;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+            border: none;
+            padding: 0;
+        }
+        .testimonio-dot.active {
+            background: #d81b60;
+            transform: scale(1.3);
+        }
+
         footer {
             text-align: center;
             padding: 30px 20px;
@@ -205,21 +304,16 @@
         .footer-redes a:hover { background-color: rgba(255,255,255,0.4); }
         .footer-redes a svg { width: 22px; height: 22px; }
 
-        /* FOCUS ACCESIBILIDAD */
         a:focus-visible, button:focus-visible {
             outline: 3px solid #d81b60;
             outline-offset: 3px;
             border-radius: 4px;
         }
 
-        /* RESPONSIVE */
         @media (max-width: 768px) {
             .contenido { padding: 0 15px; margin: 20px auto; }
-
             .hamburguesa { display: flex; }
-
             nav { flex-wrap: wrap; padding: 12px 20px; justify-content: space-between; }
-
             nav .nav-links {
                 display: none;
                 flex-direction: column;
@@ -229,7 +323,6 @@
                 align-items: stretch;
             }
             nav .nav-links.open { display: flex; }
-
             nav .nav-links > a {
                 margin: 0;
                 padding: 13px 8px;
@@ -237,7 +330,6 @@
                 font-size: 15px;
             }
             nav .nav-links > a:last-child { border-bottom: none; }
-
             .nav-dropdown { width: 100%; }
             .nav-dropdown-toggle {
                 display: block;
@@ -259,8 +351,8 @@
                 font-size: 13px !important;
                 text-align: left !important;
             }
-
             body.scrolled nav .nav-logo { display: none; }
+            .testimonio-card { flex: 0 0 100%; width: 100%; }
         }
     </style>
 
@@ -348,9 +440,13 @@
 
     <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
     <script>
-        const lightbox = GLightbox({ touchNavigation: true, loop: true });
-
-        // Scroll
+        const lightbox = GLightbox({ 
+            selector: '.glightbox',
+            touchNavigation: true, 
+            loop: true,
+            zoomable: true
+        });
+        
         let scrolled = false;
         window.addEventListener('scroll', () => {
             const y = window.scrollY;
@@ -363,18 +459,17 @@
             }
         });
 
-        // galería
         document.querySelector('.nav-dropdown-toggle').addEventListener('click', function(e) {
             e.preventDefault();
             this.closest('.nav-dropdown').classList.toggle('open');
         });
+
         document.addEventListener('click', function(e) {
             if (!e.target.closest('.nav-dropdown')) {
                 document.querySelectorAll('.nav-dropdown').forEach(d => d.classList.remove('open'));
             }
         });
 
-        // Hamburguesa
         const hamburguesa = document.getElementById('hamburguesa');
         const navLinks = document.getElementById('nav-links');
         hamburguesa.addEventListener('click', function() {
@@ -382,6 +477,7 @@
             navLinks.classList.toggle('open');
             this.setAttribute('aria-expanded', isOpen);
         });
+
         navLinks.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 if (window.innerWidth <= 768) {
@@ -392,11 +488,12 @@
             });
         });
 
-        // Transición entre páginas
         document.querySelectorAll('a').forEach(link => {
             if (link.hostname === window.location.hostname &&
                 !link.href.includes('#') &&
-                link.target !== '_blank') {
+                link.target !== '_blank' &&
+                !link.classList.contains('glightbox') &&
+                !link.classList.contains('nav-dropdown-toggle')) {
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
                     const href = this.href;
